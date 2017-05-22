@@ -34,21 +34,6 @@ public class Student {
         return (this.getName() == null || this.getSurName() == null || this.getAge() == 0);
     }
 
-    //    move all "null" students to the end of array
-//    public void normalizeArray(Student[] students) {
-//        boolean sorted = false;
-//        while (!sorted) {
-//            sorted = true;
-//            for (int i = 1; i < students.length; i++) {
-//                if (students[i - 1] == null) {
-//                    sorted = false;
-//                    students[i - 1] = students[i];
-//                    students[i] = null;
-//                }
-//            }
-//        }
-//    }
-
     public String getName() {
         return name;
     }
