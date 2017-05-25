@@ -4,7 +4,7 @@ import week1.student_task.tests.GroupTest;
 /**
  * Created by valentina on 16.05.17.
  */
-public class RunTests {
+public class RunGroupTests {
     public static void main(String[] args) {
         GroupTest groupTest = new GroupTest();
         groupTest.testAdd1();

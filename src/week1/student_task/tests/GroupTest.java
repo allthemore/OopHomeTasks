@@ -60,8 +60,8 @@ public class GroupTest {
 
     public void testRemove1() {
         Student student1 = new Student("Maxim", "Muzichenko", 29);
-        Student student2 = new Student("Oleh", "Muzichenko", 29);
-        Student student3 = new Student("Ivan", "Ivanov", 29);
+        Student student2 = new Student("Oleh", "Muzichenko", 30);
+        Student student3 = new Student("Ivan", "Ivanov", 31);
         group = new Group(20, 5);
         group.addStudent(student1);
         group.addStudent(student2);
@@ -72,7 +72,7 @@ public class GroupTest {
         headerFormat("testRemove1");
         System.out.printf("Test result - %b, expected - %b,  actual - %b\n", expected == actual, expected, actual);
         System.out.println(group.asString());
-        System.out.printf("Group size check - %b, actual - %d, expected - %d\n", sizeExpected == group.getSize(), sizeExpected, group.getSize());
+        System.out.printf("Group size check - %b, expected - %d, actual - %d\n", sizeExpected == group.getSize(), sizeExpected, group.getSize());
         System.out.println("\n");
     }
 
@@ -85,7 +85,7 @@ public class GroupTest {
         headerFormat("testRemove2");
         System.out.printf("Test result - %b, expected - %b,  actual - %b\n", expected == actual, expected, actual);
         System.out.println(group.asString());
-        System.out.printf("Group size check - %b, actual - %d, expected - %d\n", sizeExpected == group.getSize(), sizeExpected, group.getSize());
+        System.out.printf("Group size check - %b, expected - %d, actual - %d\n", sizeExpected == group.getSize(), sizeExpected, group.getSize());
         System.out.println("\n");
     }
 
@@ -104,7 +104,7 @@ public class GroupTest {
         headerFormat("testRemove3");
         System.out.printf("Test result - %b, expected - %b,  actual - %b\n", expected == actual, expected, actual);
         System.out.println(group.asString());
-        System.out.printf("Group size check - %b, actual - %d, expected - %d\n", sizeExpected == group.getSize(), sizeExpected, group.getSize());
+        System.out.printf("Group size check - %b, expected - %d, actual - %d\n", sizeExpected == group.getSize(), sizeExpected, group.getSize());
         System.out.println("\n");
     }
 
@@ -123,7 +123,7 @@ public class GroupTest {
         headerFormat("testRemove4");
         System.out.printf("Test result - %b, expected - %b,  actual - %b\n", expected == actual, expected, actual);
         System.out.println(group.asString());
-        System.out.printf("Group size check - %b, actual - %d, expected - %d\n", sizeExpected == group.getSize(), sizeExpected, group.getSize());
+        System.out.printf("Group size check - %b, expected - %d, actual - %d\n", sizeExpected == group.getSize(), sizeExpected, group.getSize());
         System.out.println("\n");
     }
 

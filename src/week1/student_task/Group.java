@@ -89,6 +89,16 @@ public class Group {
         }
     }
 
+    public boolean equalTo(Group group) {
+        if (group == null || group.hasEmptyField()) return false;
+        if (group == this) return true;
+        return this.groupNumber == group.groupNumber && this.students.equals(group.students);
+    }
+
+    public boolean hasEmptyField() {
+        return this.groupNumber == 0 || students.length == 0;
+    }
+
     public String asString() {
 
         String info = "";

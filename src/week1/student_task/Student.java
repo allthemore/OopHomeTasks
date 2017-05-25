@@ -31,7 +31,7 @@ public class Student {
     }
 
     public boolean hasEmptyField() {
-        return (this.getName() == null || this.getSurName() == null || this.getAge() == 0);
+        return this.getName() == null || this.getSurName() == null || this.getAge() == 0;
     }
 
     public String getName() {
