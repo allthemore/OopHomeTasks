@@ -36,6 +36,7 @@ public class Student {
         if(obj == this) return true;
 
         Student studentCasted = (Student) obj;
+        if (studentCasted.hasEmptyField()) return false;
         return this.name.equals(studentCasted.name) && this.surName.equals(studentCasted.surName);
     }
 

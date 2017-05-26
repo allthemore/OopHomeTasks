@@ -101,6 +101,7 @@ public class Group {
         if(obj == this) return true;
 
         Group groupCasted = (Group) obj;
+        if(groupCasted.hasEmptyField()) return false;
         return this.groupNumber == groupCasted.groupNumber && this.students.equals(groupCasted.students);
     }
 
