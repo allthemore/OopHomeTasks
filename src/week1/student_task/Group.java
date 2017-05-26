@@ -41,7 +41,7 @@ public class Group {
             return false;
         }
         for (int i = 0; i < size; i++) {
-            if (student.equalTo(students[i])) {
+            if (student.equals(students[i])) {
                 return false;
             }
         }
@@ -63,7 +63,7 @@ public class Group {
         }
 
         for (int i = 0; i < size; i++) {
-            if (student.equalTo(students[i])) {
+            if (student.equals(students[i])) {
                 System.arraycopy(students, i + 1, students, i, size - i - 1);
                 students[--size] = null;
                 return true;
@@ -93,6 +93,15 @@ public class Group {
         if (group == null || group.hasEmptyField()) return false;
         if (group == this) return true;
         return this.groupNumber == group.groupNumber && this.students.equals(group.students);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null || !(obj instanceof Group)) return false;
+        if(obj == this) return true;
+
+        Group groupCasted = (Group) obj;
+        return this.groupNumber == groupCasted.groupNumber && this.students.equals(groupCasted.students);
     }
 
     public boolean hasEmptyField() {

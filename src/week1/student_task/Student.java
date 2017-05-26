@@ -30,6 +30,15 @@ public class Student {
         return this.name.equals(student.name) && this.surName.equals(student.surName);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null || !(obj instanceof Student)) return false;
+        if(obj == this) return true;
+
+        Student studentCasted = (Student) obj;
+        return this.name.equals(studentCasted.name) && this.surName.equals(studentCasted.surName);
+    }
+
     public boolean hasEmptyField() {
         return this.getName() == null || this.getSurName() == null || this.getAge() == 0;
     }

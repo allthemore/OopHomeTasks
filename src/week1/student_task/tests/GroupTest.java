@@ -177,7 +177,7 @@ public class GroupTest {
         group.addStudent(student2);
         group.addStudent(student3);
         boolean expected = true;
-        boolean actual = group.updateStudent(3, student4);
+        boolean actual = group.updateStudent(2, student4);
         int sizeExpected = 4;
         headerFormat("testUpdate3");
         System.out.printf("Test result - %b, expected - %b,  actual - %b\n", expected == actual, expected, actual);

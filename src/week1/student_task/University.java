@@ -50,7 +50,7 @@ public class University {
        if (group == null || size == groups.length || group.hasEmptyField()) return false;
 
        for (int i = 0; i < size; i++) {
-           if (group.equalTo(groups[i])) {
+           if (group.equals(groups[i])) {
                return false;
            }
        }
