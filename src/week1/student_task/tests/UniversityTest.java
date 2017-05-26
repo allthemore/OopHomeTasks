@@ -9,8 +9,6 @@ import week1.student_task.University;
  */
 public class UniversityTest {
 
-    private University university;
-
     private Student student1 = new Student("Name1", "Surname1", 29);
     private Student student2 = new Student("Name2", "Surname2", 30);
     private Student student3 = new Student("Name3", "Surname3", 31);
@@ -33,11 +31,8 @@ public class UniversityTest {
     private Group group7 = new Group(11, students4);
     private Group group8 = new Group(16, students1);
 
-    private Group[] groups;
     private Group[] groups1 = {group1, group2, group3};
     private Group[] groups2 = {group2, group3, group4, null, null};
-    private Group[] groups3 = {group5, null, null};
-
 
     public University university1 = new University("University1", 1);
     public University university2 = new University("University2", groups1);
@@ -187,6 +182,31 @@ public class UniversityTest {
         headerFormat("testRemoveGroup3 -- delete non-existing group by index that exceeds 'groups' array size");
         System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testRemoveGroup3", expected == actual, expected, actual);
         System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
+        System.out.println("\n");
+    }
+
+    public void testAddDynamic1(){
+        University university = new University("UniversityDynamic", 1);
+        boolean expected = true;
+        int sizeExpected = 1;
+        boolean actual = university.addGroupDynamic(group2);
+        headerFormat("testAddGroupDynamic1 -- add groups dynamically");
+        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddDynamic1", expected == actual, expected, actual);
+        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
+        System.out.println("\n");
+
+        sizeExpected = 2;
+        actual = university.addGroupDynamic(group3);
+        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddDynamic1", expected == actual, expected, actual);
+        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
+        System.out.println("\n");
+
+        sizeExpected = 3;
+        actual = university.addGroupDynamic(group4);
+        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddDynamic1", expected == actual, expected, actual);
+        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
+        System.out.println("\n");
+        System.out.println(university.asString());
         System.out.println("\n");
     }
 

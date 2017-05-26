@@ -50,12 +50,30 @@ public class University {
        if (group == null || size == groups.length || group.hasEmptyField()) return false;
 
        for (int i = 0; i < size; i++) {
-           if (group.equals(groups[i])) {
-               return false;
-           }
+           if (group.equals(groups[i])) return false;
        }
        groups[size++] = group;
        return true;
+    }
+
+    public boolean addGroupDynamic(Group group) {
+        if(group == null || group.hasEmptyField()) return false;
+
+        for (int i = 0; i < size; i++) {
+            if(group.equals(groups[i])) return false;
+        }
+
+        if(groups.length == size) {
+            this.expandArray();
+        }
+        groups[size++] = group;
+        return true;
+    }
+
+    private void expandArray() {
+        Group[] expanded = new Group[groups.length + 1];
+        System.arraycopy(groups, 0, expanded, 0, groups.length);
+        groups = expanded;
     }
 
 

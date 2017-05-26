@@ -23,5 +23,6 @@ public class RunUniversityTests {
         universityTest.testRemoveGroup1();
         universityTest.testRemoveGroup2();
         universityTest.testRemoveGroup3();
+        universityTest.testAddDynamic1();
     }
 }
