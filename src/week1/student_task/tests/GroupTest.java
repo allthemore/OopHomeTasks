@@ -178,10 +178,40 @@ public class GroupTest {
         group.addStudent(student3);
         boolean expected = true;
         boolean actual = group.updateStudent(2, student4);
-        int sizeExpected = 4;
+        int sizeExpected = 3;
         headerFormat("testUpdate3");
         System.out.printf("Test result - %b, expected - %b,  actual - %b\n", expected == actual, expected, actual);
         System.out.println(group.asString());
+        System.out.printf("Group size check - %b, expected - %d, actual - %d\n", sizeExpected == group.getSize(), sizeExpected, group.getSize());
+        System.out.println("\n");
+
+    }
+
+    public void testAddDynamic1() {
+        Student student1 = new Student("Maxim", "Muzichenko", 29);
+        Student student2 = new Student("Oleh", "Muzichenko", 29);
+        Student student3 = new Student("Ivan", "Ivanov", 29);
+        group = new Group(20, 1);
+        headerFormat("testUpdateDynamic1");
+        boolean expected = true;
+        int sizeExpected = 1;
+        boolean actual = group.addStudentDynamic(student1);
+        System.out.println(group.asString());
+        System.out.printf("Test result - %b, expected - %b,  actual - %b\n", expected == actual, expected, actual);
+        System.out.printf("Group size check - %b, expected - %d, actual - %d\n", sizeExpected == group.getSize(), sizeExpected, group.getSize());
+        System.out.println("\n");
+
+        actual = group.addStudentDynamic(student2);
+        System.out.println(group.asString());
+        sizeExpected = 2;
+        System.out.printf("Test result - %b, expected - %b,  actual - %b\n", expected == actual, expected, actual);
+        System.out.printf("Group size check - %b, expected - %d, actual - %d\n", sizeExpected == group.getSize(), sizeExpected, group.getSize());
+        System.out.println("\n");
+
+        actual = group.addStudentDynamic(student3);
+        System.out.println(group.asString());
+        sizeExpected = 3;
+        System.out.printf("Test result - %b, expected - %b,  actual - %b\n", expected == actual, expected, actual);
         System.out.printf("Group size check - %b, expected - %d, actual - %d\n", sizeExpected == group.getSize(), sizeExpected, group.getSize());
         System.out.println("\n");
 

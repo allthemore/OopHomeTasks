@@ -19,5 +19,6 @@ public class RunGroupTests {
         groupTest.testUpdate2();
         groupTest.testUpdate3();
         groupTest.testSort1();
+        groupTest.testAddDynamic1();
     }
 }

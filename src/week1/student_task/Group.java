@@ -37,16 +37,33 @@ public class Group {
 
 
     public boolean addStudent(Student student) {
-        if (student == null || size == students.length) {
-            return false;
-        }
+        if (student == null || size == students.length) return false;
+
         for (int i = 0; i < size; i++) {
-            if (student.equals(students[i])) {
-                return false;
-            }
+            if (student.equals(students[i])) return false;
         }
         students[size++] = student;
         return true;
+    }
+
+    public boolean addStudentDynamic(Student student) {
+        if(student == null || student.hasEmptyField()) return false;
+
+        for (int i = 0; i < size; i++) {
+            if(student.equals(students[i])) return false;
+        }
+
+        if(students.length == size) {
+            this.expandArray();
+        }
+        students[size++] = student;
+        return true;
+    }
+
+    private void expandArray() {
+        Student[] expanded = new Student[students.length + 1];
+        System.arraycopy(students, 0, expanded, 0, students.length);
+        students = expanded;
     }
 
     public boolean updateStudent(int position, Student student) {
