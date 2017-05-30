@@ -1,6 +1,8 @@
 package week1.student_task_dynamic_array;
 
 
+import java.util.Arrays;
+
 /**
  * Created by valentina on 14.05.17.
  */
@@ -102,13 +104,13 @@ public class Group {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if(obj == null || !(obj instanceof Group)) return false;
-        if(obj == this) return true;
+    public boolean equals(Object o) {
+        if(o == null || !(o instanceof Group)) return false;
+        if(o == this) return true;
 
-        Group groupCasted = (Group) obj;
-        if(groupCasted.hasEmptyField()) return false;
-        return this.groupNumber == groupCasted.groupNumber && this.students.equals(groupCasted.students);
+        Group groupCasted = (Group) o;
+        if(this.groupNumber != groupCasted.groupNumber || this.size != groupCasted.size) return false;
+        return Arrays.equals(this.students, groupCasted.students);
     }
 
     public boolean hasEmptyField() {

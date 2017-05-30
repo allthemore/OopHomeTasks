@@ -31,11 +31,11 @@ public class Student {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if(obj == null || !(obj instanceof Student)) return false;
-        if(obj == this) return true;
+    public boolean equals(Object o) {
+        if(o == null || !(o instanceof Student)) return false;
+        if(o == this) return true;
 
-        Student studentCasted = (Student) obj;
+        Student studentCasted = (Student) o;
         if(this.age != studentCasted.age) return false;
         if(this.name != null ? !this.name.equals(studentCasted.name) : studentCasted.name != null) return false;
         return this.surName != null ? this.surName.equals(studentCasted.surName) : studentCasted.surName == null;
