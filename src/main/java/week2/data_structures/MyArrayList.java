@@ -1,5 +1,6 @@
 package week2.data_structures;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 
@@ -36,27 +37,54 @@ public class MyArrayList implements MyList{
 
     @Override
     public boolean add(Object o, int index) {
-        return false;
+        if(index > size) return false;
+        if(size == elementData.length) increaseCapacity();
+        shiftElementsToTheRight(index);
+        elementData[index] = o;
+        size++;
+        return true;
+    }
+
+    private void shiftElementsToTheRight(int index) {
+        System.arraycopy(elementData, index, elementData, index + 1, size - index);
+    }
+
+    private void shiftElementsToTheLeft(int index) {
+        System.arraycopy(elementData, index + 1, elementData, index, size - index);
     }
 
     @Override
     public boolean contains(Object o) {
+        if(size == 0) return false;
+        for (Object elem : elementData) {
+            if(o != null ? o.equals(elem) : elem == null) return true;
+        }
         return false;
     }
 
     @Override
     public boolean set(Object o, int index) {
-        return false;
+        if(index >= size) return false;
+        elementData[index] = o;
+        return true;
     }
 
     @Override
     public void clear() {
-
+        if(size == 0) return;
+//        for (Object elem : elementData) {
+//            elem = null;
+//        }
+        for (int i = 0; i < size; i++) {
+            elementData[i] = null;
+        }
+        size = 0;
     }
 
     @Override
     public Object get(int index) {
-        return null;
+        if(index >= size) return null;
+        return elementData[index];
     }
 
     @Override
@@ -66,7 +94,11 @@ public class MyArrayList implements MyList{
 
     @Override
     public Object remove(int index) {
-        return null;
+        if(index >= size) return null;
+        Object tmp = get(index);
+        shiftElementsToTheLeft(index);
+        elementData[size--] = null;
+        return tmp;
     }
 
     @Override
@@ -85,7 +117,7 @@ public class MyArrayList implements MyList{
 
         for (int i = 0; i < size; i++) {
             if(o.equals(elementData[i])) {
-                System.arraycopy(elementData, i + 1, elementData, i, size - i -1);
+                System.arraycopy(elementData, i + 1, elementData, i, size - i - 1);
                 elementData[size--] = null;
                 return true;
             }
@@ -95,11 +127,19 @@ public class MyArrayList implements MyList{
 
     @Override
     public int size() {
-        return size;
+        return this.size;
     }
 
     @Override
     public Iterator iterator() {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("MyArrayList: ");
+        sb.append("elementData = ").append(Arrays.toString(elementData));
+        sb.append(", size = ").append(size());
+        return sb.toString();
     }
 }

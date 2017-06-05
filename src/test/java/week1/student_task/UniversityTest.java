@@ -2,9 +2,6 @@ package week1.student_task;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import week1.student_task.Group;
-import week1.student_task.Student;
-import week1.student_task.University;
 
 /**
  * Created by valentina on 24.05.17.
@@ -36,19 +33,10 @@ public class UniversityTest {
     private Group[] groups1 = {group1, group2, group3};
     private Group[] groups2 = {group2, group3, group4, null, null};
 
-    public University university1 = new University("University1", 1);
-    public University university2 = new University("University2", groups1);
-    public University university3 = new University("University3", groups2);
-
     private void headerFormat(String name) {
         System.out.println("===============================================");
         System.out.println(name);
         System.out.println("===============================================");
-    }
-
-    public void printUniversity(University university) {
-        headerFormat("Print University");
-        System.out.println(university.asString());
     }
 
     @Test

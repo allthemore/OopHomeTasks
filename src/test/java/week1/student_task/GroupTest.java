@@ -1,8 +1,6 @@
 package week1.student_task;
 
 import static org.junit.Assert.*;
-import week1.student_task.Group;
-import week1.student_task.Student;
 import org.junit.Test;
 
 
