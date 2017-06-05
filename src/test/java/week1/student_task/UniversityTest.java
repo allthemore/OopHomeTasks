@@ -64,105 +64,72 @@ public class UniversityTest {
     public void testAddGroup2(){
         Group[] groups = {group2, group3, group4, null, null};
         University university = new University("University2", groups);
-        boolean expected = true;
-        int sizeExpected = 4;
-        boolean actual = university.addGroup(group1);
         headerFormat("testAddGroup2 -- add group created by other constructor");
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddGroup2", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
-
+        assertTrue(university.addGroup(group1));
+        assertEquals(4, university.getSize());
     }
 
     @Test
     public void testAddGroup3(){
         Group[] groups = {group2, group3, group4, null, null};
         University university = new University("University2", groups);
-        boolean expected = false;
-        int sizeExpected = 3;
-        boolean actual = university.addGroup(null);
         headerFormat("testAddGroup3 -- add 'null' group");
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddGroup3", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertFalse(university.addGroup(null));
+        assertEquals(3, university.getSize());
     }
 
     @Test
     public void testAddGroup4(){
         Group[] groups = {group2, group3, group4};
         University university = new University("University2", groups);
-        boolean expected = false;
-        int sizeExpected = 3;
-        boolean actual = university.addGroup(group5);
         headerFormat("testAddGroup4 -- add group when university size is full");
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddGroup4", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertFalse(university.addGroup(group5));
+        assertEquals(3, university.getSize());
     }
 
     @Test
     public void testAddGroup5(){
         Group[] groups = {group2, group3, group4};
         University university = new University("University2", groups);
-        boolean expected = false;
-        int sizeExpected = 3;
-        boolean actual = university.addGroup(group2);
         headerFormat("testAddGroup4 -- add group that already added");
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddGroup5", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertFalse(university.addGroup(group2));
+        assertEquals(3, university.getSize());
     }
 
     @Test
     public void testAddGroup6(){
         Group[] groups = {group2, group3, group4};
         University university = new University("University2", groups);
-        boolean expected = false;
-        int sizeExpected = 3;
-        boolean actual = university.addGroup(group6);
         headerFormat("testAddGroup6 -- add group with zero length");
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddGroup6", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertFalse(university.addGroup(group6));
+        assertEquals(3, university.getSize());
     }
 
     @Test
     public void testAddGroup7(){
         Group[] groups = {group2, group3, group4};
         University university = new University("University2", groups);
-        boolean expected = false;
-        int sizeExpected = 3;
-        boolean actual = university.addGroup(group7);
         headerFormat("testAddGroup7 -- add group with existing group number");
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddGroup7", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertFalse(university.addGroup(group7));
+        assertEquals(3, university.getSize());
     }
 
     @Test
     public void testAddGroup8() {
         Group[] groups = {group2, group3, group4};
         University university = new University("University2", groups);
-        boolean expected = false;
-        int sizeExpected = 3;
-        boolean actual = university.addGroup(group8);
         headerFormat("testAddGroup8 -- add group with existing students array");
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddGroup8", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertFalse(university.addGroup(group8));
+        assertEquals(3, university.getSize());
     }
 
     @Test
     public void testRemoveGroup1() {
         Group[] groups = {group2, group3, group4};
         University university = new University("University2", groups);
-        boolean expected = true;
-        int sizeExpected = 2;
-        boolean actual = university.deleteGroup(0);
         headerFormat("testRemoveGroup1 -- delete existing group by index");
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testRemoveGroup1", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertTrue(university.deleteGroup(0));
+        assertEquals(2, university.getSize());
     }
 
     @Test
@@ -171,13 +138,10 @@ public class UniversityTest {
         university.addGroup(group2);
         university.addGroup(group3);
         university.addGroup(group4);
-        boolean expected = false;
-        int sizeExpected = 3;
-        boolean actual = university.deleteGroup(3);
         headerFormat("testRemoveGroup2 -- delete non-existing group by index");
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testRemoveGroup2", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertFalse(university.deleteGroup(3));
+        assertEquals(3, university.getSize());
+
     }
 
     @Test
@@ -186,37 +150,23 @@ public class UniversityTest {
         university.addGroup(group2);
         university.addGroup(group3);
         university.addGroup(group4);
-        boolean expected = false;
-        int sizeExpected = 3;
-        boolean actual = university.deleteGroup(6);
         headerFormat("testRemoveGroup3 -- delete non-existing group by index that exceeds 'groups' array size");
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testRemoveGroup3", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertFalse(university.deleteGroup(6));
+        assertEquals(3, university.getSize());
     }
 
     @Test
     public void testAddDynamic1(){
         University university = new University("UniversityDynamic", 1);
-        boolean expected = true;
-        int sizeExpected = 1;
-        boolean actual = university.addGroupDynamic(group2);
         headerFormat("testAddGroupDynamic1 -- add groups dynamically");
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddDynamic1", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertTrue(university.addGroupDynamic(group2));
+        assertEquals(1, university.getSize());
 
-        sizeExpected = 2;
-        actual = university.addGroupDynamic(group3);
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddDynamic1", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertTrue(university.addGroupDynamic(group3));
+        assertEquals(2, university.getSize());
 
-        sizeExpected = 3;
-        actual = university.addGroupDynamic(group4);
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddDynamic1", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertTrue(university.addGroupDynamic(group4));
+        assertEquals(3, university.getSize());
         System.out.println(university.asString());
         System.out.println("\n");
     }
