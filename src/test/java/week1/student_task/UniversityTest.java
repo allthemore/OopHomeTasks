@@ -1,5 +1,7 @@
-package week1.student_task.tests;
+package week1.student_task;
 
+import static org.junit.Assert.*;
+import org.junit.Test;
 import week1.student_task.Group;
 import week1.student_task.Student;
 import week1.student_task.University;
@@ -49,18 +51,16 @@ public class UniversityTest {
         System.out.println(university.asString());
     }
 
+    @Test
     public void testAddGroup1(){
         Group[] groups = {group2, group3, group4, null, null};
         University university = new University("University1", groups);
-        boolean expected = true;
-        int sizeExpected = 4;
-        boolean actual = university.addGroup(group5);
         headerFormat("testAddGroup1 -- add group that was not previously added");
-        System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddGroup1", expected == actual, expected, actual);
-        System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
-        System.out.println("\n");
+        assertTrue(university.addGroup(group5));
+        assertEquals(4, university.getSize());
     }
 
+    @Test
     public void testAddGroup2(){
         Group[] groups = {group2, group3, group4, null, null};
         University university = new University("University2", groups);
@@ -71,8 +71,10 @@ public class UniversityTest {
         System.out.printf("Test %s result - %b, expected - %b,  actual - %b\n", "testAddGroup2", expected == actual, expected, actual);
         System.out.printf("University size check - %b, expected - %d, actual - %d\n", sizeExpected == university.getSize(), sizeExpected, university.getSize());
         System.out.println("\n");
+
     }
 
+    @Test
     public void testAddGroup3(){
         Group[] groups = {group2, group3, group4, null, null};
         University university = new University("University2", groups);
@@ -85,6 +87,7 @@ public class UniversityTest {
         System.out.println("\n");
     }
 
+    @Test
     public void testAddGroup4(){
         Group[] groups = {group2, group3, group4};
         University university = new University("University2", groups);
@@ -97,6 +100,7 @@ public class UniversityTest {
         System.out.println("\n");
     }
 
+    @Test
     public void testAddGroup5(){
         Group[] groups = {group2, group3, group4};
         University university = new University("University2", groups);
@@ -109,6 +113,7 @@ public class UniversityTest {
         System.out.println("\n");
     }
 
+    @Test
     public void testAddGroup6(){
         Group[] groups = {group2, group3, group4};
         University university = new University("University2", groups);
@@ -121,6 +126,7 @@ public class UniversityTest {
         System.out.println("\n");
     }
 
+    @Test
     public void testAddGroup7(){
         Group[] groups = {group2, group3, group4};
         University university = new University("University2", groups);
@@ -133,6 +139,7 @@ public class UniversityTest {
         System.out.println("\n");
     }
 
+    @Test
     public void testAddGroup8() {
         Group[] groups = {group2, group3, group4};
         University university = new University("University2", groups);
@@ -145,6 +152,7 @@ public class UniversityTest {
         System.out.println("\n");
     }
 
+    @Test
     public void testRemoveGroup1() {
         Group[] groups = {group2, group3, group4};
         University university = new University("University2", groups);
@@ -157,6 +165,7 @@ public class UniversityTest {
         System.out.println("\n");
     }
 
+    @Test
     public void testRemoveGroup2() {
         University university = new University("University2", 4);
         university.addGroup(group2);
@@ -171,6 +180,7 @@ public class UniversityTest {
         System.out.println("\n");
     }
 
+    @Test
     public void testRemoveGroup3() {
         University university = new University("University2", 4);
         university.addGroup(group2);
@@ -185,6 +195,7 @@ public class UniversityTest {
         System.out.println("\n");
     }
 
+    @Test
     public void testAddDynamic1(){
         University university = new University("UniversityDynamic", 1);
         boolean expected = true;
@@ -209,6 +220,4 @@ public class UniversityTest {
         System.out.println(university.asString());
         System.out.println("\n");
     }
-
-
 }

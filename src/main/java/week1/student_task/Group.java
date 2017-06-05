@@ -138,6 +138,10 @@ public class Group {
     }
 
     public int getSize() {
-        return size;
+        return this.size;
+    }
+
+    public Student[] getStudents() {
+        return this.students;
     }
 }
