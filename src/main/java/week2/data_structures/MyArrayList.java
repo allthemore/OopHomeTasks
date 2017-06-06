@@ -72,9 +72,7 @@ public class MyArrayList implements MyList{
     @Override
     public void clear() {
         if(size == 0) return;
-//        for (Object elem : elementData) {
-//            elem = null;
-//        }
+
         for (int i = 0; i < size; i++) {
             elementData[i] = null;
         }
@@ -128,11 +126,6 @@ public class MyArrayList implements MyList{
     @Override
     public int size() {
         return this.size;
-    }
-
-    @Override
-    public Iterator iterator() {
-        return null;
     }
 
     @Override
