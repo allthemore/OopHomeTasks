@@ -1,14 +1,14 @@
-package week2.library;
+package week2.library.edition;
 
 /**
  * Created by valentina on 22.05.17.
  */
-public class Encyclopedia extends Book {
+public class Encyclopedia extends Edition {
 
     private int volumesNumber;
 
-    public Encyclopedia(String title, String author, double price, int yearOfPublishing, String issn, int pageNumber, int volumesNumber) {
-        super(title, author, price, yearOfPublishing, issn, pageNumber);
+    public Encyclopedia(String title, String author, int yearOfPublishing, String issn, String language, int pageNumber, int volumesNumber) {
+        super(title, author, yearOfPublishing, issn, language, pageNumber);
         this.volumesNumber = volumesNumber;
     }
 
@@ -29,4 +29,11 @@ public class Encyclopedia extends Book {
         System.out.printf("Definition of %s\n", word);
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Encyclopedia{");
+        sb.append("volumesNumber=").append(volumesNumber);
+        sb.append('}');
+        return sb.toString();
+    }
 }

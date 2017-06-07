@@ -1,17 +1,17 @@
-package week2.library;
+package week2.library.edition;
 
 /**
  * Created by valentina on 22.05.17.
  */
-public class ReferenceBook extends Book {
+public class ReferenceBook extends Edition {
 
     private boolean isDigital;
 
 //    Type of ordering data: by alphabet, chronologically, by topic etc
     private String orderingType;
 
-    public ReferenceBook(String title, String author, double price, int yearOfPublishing, String issn, int pageNumber, boolean isDigital, String orderingType) {
-        super(title, author, price, yearOfPublishing, issn, pageNumber);
+    public ReferenceBook(String title, String author, int yearOfPublishing, String issn, String language, int pageNumber, boolean isDigital, String orderingType) {
+        super(title, author, yearOfPublishing, issn, language, pageNumber);
         this.isDigital = isDigital;
         this.orderingType = orderingType;
     }
@@ -30,6 +30,15 @@ public class ReferenceBook extends Book {
 
     public void setOrderingType(String orderingType) {
         this.orderingType = orderingType;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ReferenceBook{");
+        sb.append("isDigital=").append(isDigital);
+        sb.append(", orderingType='").append(orderingType).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override
