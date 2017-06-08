@@ -42,6 +42,13 @@ public class Library {
         }
     }
 
+//    ????? this !!!!!!
+    private void printAllEditions() {
+        for (Edition edition : libraryEditions) {
+            System.out.println(edition);
+        }
+    }
+
     public boolean banVisitor(Visitor visitor) {
         if(visitor == null || visitor.hasNullField() || !visitors.contains(visitor)) return false;
         visitor.setAccessAllowed(false);
