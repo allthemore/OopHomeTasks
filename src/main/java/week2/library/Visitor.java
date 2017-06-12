@@ -43,8 +43,13 @@ public class Visitor implements Comparable<Visitor>{
         return borrowedBooks;
     }
 
-    public void takeEdition(Edition edition) {
-        borrowedBooks.add(edition);
+    public int getBorrowedBooksNumber() {
+        return borrowedBooks.size();
+    }
+
+    boolean takeEdition(Edition edition) {
+        if(borrowedBooks.size() == 3) return false;
+        return borrowedBooks.add(edition);
     }
 
     public boolean hasNullField() {
@@ -57,6 +62,32 @@ public class Visitor implements Comparable<Visitor>{
         int compareToResult = this.name.compareTo(visitor.name);
         if(compareToResult != 0) return compareToResult;
         return this.surname.compareTo(visitor.surname);
+    }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        Visitor visitor = (Visitor) o;
+//
+//        if (accessAllowed != visitor.accessAllowed) return false;
+//        if (MAX_BOOKS_BORROWED != visitor.MAX_BOOKS_BORROWED) return false;
+//        if (name != null ? !name.equals(visitor.name) : visitor.name != null) return false;
+//        if (surname != null ? !surname.equals(visitor.surname) : visitor.surname != null) return false;
+//        return borrowedBooks != null ? borrowedBooks.equals(visitor.borrowedBooks) : visitor.borrowedBooks == null;
+//    }
+
+//    Compare by name and surname only
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Visitor visitor = (Visitor) o;
+
+        if (name != null ? !name.equals(visitor.name) : visitor.name != null) return false;
+        return surname != null ? surname.equals(visitor.surname) : visitor.surname == null;
     }
 
     @Override

@@ -2,6 +2,7 @@ package week2.library;
 
 import java.util.*;
 
+import week2.library.comparators.AuthorComparator;
 import week2.library.comparators.NameComparator;
 import week2.library.edition.Edition;
 
@@ -13,9 +14,21 @@ public class Library {
     private List<Visitor> visitors = new ArrayList<>();
 
     public boolean addVisitor(Visitor visitor) {
-        if(visitor == null || visitor.hasNullField() || visitors.contains(visitor)) return false;
+        if(visitor == null || visitor.hasNullField() || visitors.contains(visitor) ||
+                visitorAlreadyAdded(visitor)) return false;
         visitors.add(visitor);
         return true;
+    }
+
+    private boolean visitorAlreadyAdded(Visitor visitor) {
+        if(visitor.getName() != null && visitor.getSurname() != null) {
+            for (Visitor visit : visitors) {
+                if(visitor.compareTo(visit) == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public boolean addEdition(Edition edition) {
@@ -24,58 +37,77 @@ public class Library {
         return true;
     }
 
-    public void sortVisitors(Comparator<Visitor> comparator){
-        Collections.sort(visitors, comparator);
-    }
+//    public void sortVisitors(Comparator<Visitor> comparator){
+//        visitors.sort(comparator);
+//    }
 
-    private void swap(ArrayList<Visitor> visitors, int index) {
-        Visitor tmp = visitors.get(index);
-
-    }
-
-//    Print editions not taken by visitors
-    private void printAvailableEditions(){
-        for (Edition edition : libraryEditions) {
-            if(!edition.getTakenByVisitor()) {
-                System.out.println(edition);
-            }
+    public void printVisitorsSortedByName() {
+        visitors.sort(new NameComparator());
+        for (Visitor visitor : visitors) {
+            System.out.println(visitor);
         }
     }
 
-//    ????? this !!!!!!
-    private void printAllEditions() {
+    public void printEditionsSortedByAuthor() {
+        libraryEditions.sort(new AuthorComparator());
         for (Edition edition : libraryEditions) {
             System.out.println(edition);
         }
     }
 
     public boolean banVisitor(Visitor visitor) {
-        if(visitor == null || visitor.hasNullField() || !visitors.contains(visitor)) return false;
+        Visitor visitor1 = getVisitor(visitor);
+        if(visitor1 == null || visitor1.hasNullField() || !visitors.contains(visitor1)) return false;
         visitor.setAccessAllowed(false);
 
         return true;
     }
 
-    public boolean lendEdition(Edition edition, Visitor visitor) {
-        if(!visitor.getAccessAllowed() || edition.getTakenByVisitor() ||
-                visitor.getBorrowedBooks().size() == 3) return false;
-
-        edition.setTakenByVisitor(true);
-        visitor.takeEdition(edition);
-
-        return true;
+//    Check if Visitor exists in Library and return link to it
+    private Visitor getVisitor(Visitor visitor) {
+        if(visitors.contains(visitor)) {
+            return visitors.get(visitors.indexOf(visitor));
+        }
+        return null;
     }
 
-    public List<Edition> getBorrowed() {
+//    Check if edition exists in Library and return link to it
+    private Edition getEdition(Edition edition) {
+        if(libraryEditions.contains(edition)) {
+            return libraryEditions.get(libraryEditions.indexOf(edition));
+        }
+        return null;
+    }
+
+    public boolean lendEdition(Visitor visitor, Edition edition) {
+        Visitor visitor1 = getVisitor(visitor);
+        Edition edition1 = getEdition(edition);
+        if(visitor1 == null || edition1 == null) return false;
+
+        if(!visitor1.getAccessAllowed() || edition1.getTakenByVisitor()) return false;
+//        if(!editionInLibrary(edition1) || !visitorInLibrary(visitor1)) return false;
+
+        edition1.setTakenByVisitor(true);
+        return visitor1.takeEdition(edition1);
+    }
+
+    public List<Edition> getBorrowedAll() {
         List<Edition> borrowed = new ArrayList<>();
         for (Edition edition : libraryEditions) {
-            if(!edition.getTakenByVisitor()) {
+            if(edition.getTakenByVisitor()) {
                 borrowed.add(edition);
             }
         }
         return borrowed;
     }
 
+    public List<Edition> getBorrowedByVisitor(Visitor visitor) {
+        Visitor visitor1 = getVisitor(visitor);
+        if(visitor1 == null) return null;
+        return visitor1.getBorrowedBooks();
+    }
+
+    //    Get all editions not taken by visitors
     public List<Edition> getAvailable(){
         List<Edition> available = new ArrayList<>();
         for (Edition edition : libraryEditions) {
@@ -110,5 +142,22 @@ public class Library {
             }
         }
         return byYear;
+    }
+
+
+    public List<Edition> findEditionByKeyWords(String ... values) {
+        if(values == null) return null;
+        List<Edition> editionsFound = new ArrayList<>();
+        int argsNum = values.length;
+        Set<String> wordsInTitle;
+
+        for (Edition edition : libraryEditions) {
+            Set<String> wordsInArgs = new HashSet<>(Arrays.asList(values));
+            wordsInArgs.retainAll(new HashSet<>(Arrays.asList(edition.getTitle().split(" "))));
+            if (wordsInArgs.size() == argsNum){
+                editionsFound.add(edition);
+            }
+        }
+        return editionsFound;
     }
 }

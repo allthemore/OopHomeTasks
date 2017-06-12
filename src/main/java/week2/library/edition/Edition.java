@@ -13,61 +13,40 @@ public abstract class Edition {
     private int pageNumber;
     private boolean takenByVisitor;
 
-    public Edition(String title, String author, int yearOfPublishing, String issn, String language, int pageNumber) {
+    public Edition(String title, String author, int yearOfPublishing, String language, int pageNumber) {
         this.title = title;
         this.author = author;
         this.yearOfPublishing = yearOfPublishing;
-        this.issn = issn;
         this.language = language;
         this.pageNumber = pageNumber;
     }
 
-    public String getTitle() {
-        return title;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Edition edition = (Edition) o;
+
+        if (yearOfPublishing != edition.yearOfPublishing) return false;
+        if (pageNumber != edition.pageNumber) return false;
+        if (takenByVisitor != edition.takenByVisitor) return false;
+        if (title != null ? !title.equals(edition.title) : edition.title != null) return false;
+        if (author != null ? !author.equals(edition.author) : edition.author != null) return false;
+        if (issn != null ? !issn.equals(edition.issn) : edition.issn != null) return false;
+        return language != null ? language.equals(edition.language) : edition.language == null;
     }
 
     public String getAuthor() {
         return author;
     }
 
+    public String getTitle() {
+        return this.title;
+    }
+
     public int getYearOfPublishing() {
         return yearOfPublishing;
-    }
-
-    public String getIssn() {
-        return issn;
-    }
-
-    public int getPageNumber() {
-        return pageNumber;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setYearOfPublishing(int yearOfPublishing) {
-        this.yearOfPublishing = yearOfPublishing;
-    }
-
-    public void setIssn(String issn) {
-        this.issn = issn;
-    }
-
-    public void setPageNumber(int pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
     }
 
     public boolean getTakenByVisitor() {
@@ -80,17 +59,13 @@ public abstract class Edition {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Edition{");
+        final StringBuilder sb = new StringBuilder();
         sb.append("title='").append(title).append('\'');
         sb.append(", author='").append(author).append('\'');
         sb.append(", yearOfPublishing=").append(yearOfPublishing);
-        sb.append(", issn='").append(issn).append('\'');
+        if(issn != null) sb.append(", issn='").append(issn).append('\'');
         sb.append(", language='").append(language).append('\'');
         sb.append(", pageNumber=").append(pageNumber);
-        sb.append('}');
         return sb.toString();
     }
-
-    public abstract void readBook();
-
 }
