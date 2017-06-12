@@ -5,12 +5,12 @@ package week2.library.edition;
  */
 public abstract class Edition {
 
-    private String title;
-    private String author;
-    private int yearOfPublishing;
+    final private String title;
+    final private String author;
+    final private int yearOfPublishing;
+    final private String language;
+    final private int pageNumber;
     private String issn;
-    private String language;
-    private int pageNumber;
     private boolean takenByVisitor;
 
     public Edition(String title, String author, int yearOfPublishing, String language, int pageNumber) {
@@ -66,6 +66,14 @@ public abstract class Edition {
         if(issn != null) sb.append(", issn='").append(issn).append('\'');
         sb.append(", language='").append(language).append('\'');
         sb.append(", pageNumber=").append(pageNumber);
+        return sb.toString();
+    }
+
+    public final String info() {
+        final StringBuilder sb = new StringBuilder("Edition{");
+        sb.append("title='").append(title).append('\'');
+        sb.append(", author='").append(author).append('\'');
+        sb.append('}');
         return sb.toString();
     }
 }

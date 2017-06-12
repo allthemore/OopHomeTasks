@@ -269,6 +269,19 @@ public class LibraryTest {
         assertEquals(tmp1, tmp_1);
         assertEquals(tmp2, tmp_2);
         assertEquals(tmp3, tmp_3);
+    }
 
+    @Test
+    public void editionInfo() {
+        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
+        Edition book2 = new FictionBook("Золотой теленок", "Ильф, Петров", 2000, "Russian", 600, "Adventures");
+        Edition book3 = new ReferenceBook("English Grammar #1", "Автор1", 2017, "Russian", 600, true);
+        Edition book4 = new Encyclopedia("Encyclopedia1", "Author2", 2017, "English", 400, 5);
+        Edition book5 = new Encyclopedia("Encyclopedia2", "Author2", 2016, "English", 400, 5);
+        System.out.println(book1.info());
+        System.out.println(book2.info());
+        System.out.println(book3.info());
+        System.out.println(book4.info());
+        System.out.println(book5.info());
     }
 }
