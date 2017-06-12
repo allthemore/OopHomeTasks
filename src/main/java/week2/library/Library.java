@@ -14,21 +14,9 @@ public class Library {
     private List<Visitor> visitors = new ArrayList<>();
 
     public boolean addVisitor(Visitor visitor) {
-        if(visitor == null || visitor.hasNullField() || visitors.contains(visitor) ||
-                visitorAlreadyAdded(visitor)) return false;
+        if(visitor == null || visitor.hasNullField() || visitors.contains(visitor)) return false;
         visitors.add(visitor);
         return true;
-    }
-
-    private boolean visitorAlreadyAdded(Visitor visitor) {
-        if(visitor.getName() != null && visitor.getSurname() != null) {
-            for (Visitor visit : visitors) {
-                if(visitor.compareTo(visit) == 0) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     public boolean addEdition(Edition edition) {
@@ -57,8 +45,8 @@ public class Library {
 
     public boolean banVisitor(Visitor visitor) {
         Visitor visitor1 = getVisitor(visitor);
-        if(visitor1 == null || visitor1.hasNullField() || !visitors.contains(visitor1)) return false;
-        visitor.setAccessAllowed(false);
+        if(visitor1 == null) return false;
+        visitor1.setAccessAllowed(false);
 
         return true;
     }
@@ -85,7 +73,6 @@ public class Library {
         if(visitor1 == null || edition1 == null) return false;
 
         if(!visitor1.getAccessAllowed() || edition1.getTakenByVisitor()) return false;
-//        if(!editionInLibrary(edition1) || !visitorInLibrary(visitor1)) return false;
 
         edition1.setTakenByVisitor(true);
         return visitor1.takeEdition(edition1);
@@ -149,7 +136,6 @@ public class Library {
         if(values == null) return null;
         List<Edition> editionsFound = new ArrayList<>();
         int argsNum = values.length;
-        Set<String> wordsInTitle;
 
         for (Edition edition : libraryEditions) {
             Set<String> wordsInArgs = new HashSet<>(Arrays.asList(values));

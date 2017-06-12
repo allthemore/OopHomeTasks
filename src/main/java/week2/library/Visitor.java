@@ -1,7 +1,6 @@
 package week2.library;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import week2.library.edition.Edition;
 
@@ -13,7 +12,7 @@ public class Visitor implements Comparable<Visitor>{
     private String name;
     private String surname;
     private boolean accessAllowed = true;
-    private final int MAX_BOOKS_BORROWED = 3;
+    private static final int MAX_BOOKS_BORROWED = 3;
 
     private ArrayList<Edition> borrowedBooks;
 
