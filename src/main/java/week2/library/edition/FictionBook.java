@@ -4,11 +4,15 @@ package week2.library.edition;
  * Created by valentina on 06.06.17.
  */
 public class FictionBook extends Edition {
-    private String genre;
+    private Genre genre;
 
-    public FictionBook(String title, String author, int yearOfPublishing, String language, int pageNumber, String genre) {
+    public FictionBook(String title, String author, int yearOfPublishing, String language, int pageNumber, Genre genre) {
         super(title, author, yearOfPublishing, language, pageNumber);
         this.genre = genre;
+    }
+
+    public Genre getGenre() {
+        return genre;
     }
 
     @Override

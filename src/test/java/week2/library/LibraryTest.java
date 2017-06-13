@@ -4,10 +4,7 @@ import java.util.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import week2.library.edition.Edition;
-import week2.library.edition.Encyclopedia;
-import week2.library.edition.FictionBook;
-import week2.library.edition.ReferenceBook;
+import week2.library.edition.*;
 
 import java.util.ArrayList;
 import static org.junit.Assert.*;
@@ -52,8 +49,8 @@ public class LibraryTest {
 
     @Test
     public void printEditions() {
-        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
-        Edition book2 = new FictionBook("Золотой теленок", "Ильф, Петров", 2000, "Russian", 600, "Adventures");
+        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
+        Edition book2 = new FictionBook("Золотой теленок", "Ильф, Петров", 2000, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
         Edition book3 = new ReferenceBook("Справочник1", "Автор1", 2017, "Russian", 600, true);
         Edition book4 = new ReferenceBook("Справочник2", "Автор1", 2016, "Russian", 600, true);
         Edition book5 = new ReferenceBook("Справочник3", "Автор1", 2017, "Russian", 600, true);
@@ -73,8 +70,8 @@ public class LibraryTest {
 
     @Test
     public void addEdition() {
-        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
-        Edition book4 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
+        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
+        Edition book4 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
         Edition book2 = new ReferenceBook("Справочник1", "Автор1", 2017, "Russian", 600, true);
         Edition book3 = new Encyclopedia("Encyclopedia1", "Author2", 2017, "English", 400, 5);
         assertTrue(myLibrary.addEdition(book1));
@@ -87,12 +84,12 @@ public class LibraryTest {
 
     @Test
     public void lendEditionSuccessful() {
-        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
+        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
         Visitor visitor1 = new Visitor("Ivan", "Ivanov");
         assertTrue(myLibrary.addVisitor(visitor1));
         assertTrue(visitor1.getAccessAllowed());
         assertTrue(myLibrary.addEdition(book1));
-        assertTrue(myLibrary.lendEdition(new Visitor("Ivan", "Ivanov"), new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures")));
+        assertTrue(myLibrary.lendEdition(new Visitor("Ivan", "Ivanov"), new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE)));
         assertTrue(book1.getTakenByVisitor());
         assertEquals(1, visitor1.getBorrowedBooksNumber());
         assertTrue(visitor1.getBorrowedBooks().contains(book1));
@@ -100,8 +97,8 @@ public class LibraryTest {
 
     @Test
     public void lendEditionUnsuccessful() {
-        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
-        Edition book2 = new FictionBook("Золотой теленок", "Ильф, Петров", 2017, "Russian", 700, "Adventures");
+        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
+        Edition book2 = new FictionBook("Золотой теленок", "Ильф, Петров", 2017, "Russian", 700, Genre.ACTION_AND_ADVENTURE);
         Edition book3 = new ReferenceBook("Справочник1", "Автор1", 2017, "Russian", 600, true);
         Edition book4 = new Encyclopedia("Encyclopedia1", "Author2", 2017, "English", 400, 5);
         Edition book_1 = new Encyclopedia("Encyclopedia4", "Author2", 2017, "English", 400, 5);
@@ -133,8 +130,8 @@ public class LibraryTest {
 
     @Test
     public void getEditionsByYear() {
-        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
-        Edition book2 = new FictionBook("12 Стульев", "Ильф, Петров", 2000, "Russian", 600, "Adventures");
+        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
+        Edition book2 = new FictionBook("12 Стульев", "Ильф, Петров", 2000, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
         Edition book3 = new ReferenceBook("Справочник1", "Автор1", 2017, "Russian", 600, true);
         Edition book4 = new ReferenceBook("Справочник2", "Автор1", 2016, "Russian", 600, true);
         Edition book5 = new ReferenceBook("Справочник3", "Автор1", 2017, "Russian", 600, true);
@@ -162,8 +159,8 @@ public class LibraryTest {
 
     @Test
     public void getEditionsByAuthor() {
-        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
-        Edition book2 = new FictionBook("12 Стульев", "Ильф, Петров", 2000, "Russian", 600, "Adventures");
+        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
+        Edition book2 = new FictionBook("12 Стульев", "Ильф, Петров", 2000, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
         Edition book3 = new ReferenceBook("Справочник1", "Автор1", 2017, "Russian", 600, true);
         Edition book4 = new ReferenceBook("Справочник2", "Автор1", 2016, "Russian", 600, true);
         Edition book5 = new ReferenceBook("Справочник3", "Автор1", 2017, "Russian", 600, true);
@@ -189,8 +186,8 @@ public class LibraryTest {
 
     @Test
     public void testBorrowedAndAvailableBooks() {
-        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
-        Edition book2 = new FictionBook("Золотой теленок", "Ильф, Петров", 2000, "Russian", 600, "Adventures");
+        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
+        Edition book2 = new FictionBook("Золотой теленок", "Ильф, Петров", 2000, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
         Edition book3 = new ReferenceBook("Справочник1", "Автор1", 2017, "Russian", 600, true);
         Edition book4 = new ReferenceBook("Справочник2", "Автор1", 2016, "Russian", 600, true);
         Edition book5 = new ReferenceBook("Справочник3", "Автор1", 2017, "Russian", 600, true);
@@ -225,11 +222,11 @@ public class LibraryTest {
 
     @Test
     public void getEditionsTakenByVisitor() {
-        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
+        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
         Visitor visitor1 = new Visitor("Ivan", "Ivanov");
         assertTrue(myLibrary.addVisitor(visitor1));
         assertTrue(myLibrary.addEdition(book1));
-        assertTrue(myLibrary.lendEdition(new Visitor("Ivan", "Ivanov"), new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures")));
+        assertTrue(myLibrary.lendEdition(new Visitor("Ivan", "Ivanov"), new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE)));
         assertEquals(1, visitor1.getBorrowedBooksNumber());
         assertEquals(myLibrary.getBorrowedAll(), myLibrary.getBorrowedByVisitor(new Visitor("Ivan", "Ivanov")));
         assertEquals(myLibrary.getBorrowedAll(), myLibrary.getBorrowedByVisitor(visitor1));
@@ -238,8 +235,8 @@ public class LibraryTest {
 
     @Test
     public void getEditionsByKeyWords() {
-        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
-        Edition book2 = new FictionBook("Золотой теленок", "Ильф, Петров", 2000, "Russian", 600, "Adventures");
+        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
+        Edition book2 = new FictionBook("Золотой теленок", "Ильф, Петров", 2000, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
         Edition book3 = new ReferenceBook("English Grammar #1", "Автор1", 2017, "Russian", 600, true);
         Edition book4 = new ReferenceBook("English Grammar #2", "Автор1", 2016, "Russian", 600, true);
         Edition book5 = new ReferenceBook("English Grammar In Examples", "Автор1", 2017, "Russian", 600, true);
@@ -273,8 +270,8 @@ public class LibraryTest {
 
     @Test
     public void editionInfo() {
-        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
-        Edition book2 = new FictionBook("Золотой теленок", "Ильф, Петров", 2000, "Russian", 600, "Adventures");
+        Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
+        Edition book2 = new FictionBook("Золотой теленок", "Ильф, Петров", 2000, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
         Edition book3 = new ReferenceBook("English Grammar #1", "Автор1", 2017, "Russian", 600, true);
         Edition book4 = new Encyclopedia("Encyclopedia1", "John Smith", 2017, "English", 400, 5);
         Edition book5 = new Encyclopedia("Encyclopedia2", "Jane Smith", 2016, "English", 400, 5);
@@ -283,5 +280,20 @@ public class LibraryTest {
         assertEquals("Edition{title='English Grammar #1', author='Автор1'}", book3.info());
         assertEquals("Edition{title='Encyclopedia1', author='John Smith'}", book4.info());
         assertEquals("Edition{title='Encyclopedia2', author='Jane Smith'}", book5.info());
+    }
+
+    @Test
+    public void bookEnum() {
+        FictionBook book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
+        FictionBook book2 = new FictionBook("Сказки", "Пушкин", 2017, "Russian", 150, Genre.CHILDRENS);
+        assertEquals(book1.getGenre(), Genre.ACTION_AND_ADVENTURE);
+        assertEquals(book2.getGenre(), Genre.CHILDRENS);
+    }
+
+    @Test
+    public void magazineEnum() {
+        Magazine magazine1 = new Magazine("Oxygen", "John Smith", 2017, "English", 150);
+        magazine1.setMonthOfEdition(MonthOfEdition.JULY);
+        assertEquals(magazine1.getMonthOfEdition(), MonthOfEdition.JULY);
     }
 }
