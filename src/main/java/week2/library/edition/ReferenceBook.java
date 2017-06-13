@@ -5,7 +5,7 @@ package week2.library.edition;
  */
 public class ReferenceBook extends Edition {
 
-    private boolean isDigital;
+    private final boolean isDigital;
 
 //    Type of ordering data: by alphabet, chronologically, by topic etc
     private String orderingType;
@@ -17,10 +17,6 @@ public class ReferenceBook extends Edition {
 
     public boolean getIsDigital() {
         return isDigital;
-    }
-
-    public void setIsDigital(boolean isDigital) {
-        this.isDigital = isDigital;
     }
 
     public String getOrderingType() {
@@ -47,7 +43,7 @@ public class ReferenceBook extends Edition {
     public String toString() {
         final StringBuilder sb = new StringBuilder("ReferenceBook{");
         sb.append(super.toString());
-        sb.append("isDigital=").append(isDigital);
+        sb.append(", isDigital=").append(isDigital);
         if(orderingType != null) sb.append(", orderingType='").append(orderingType).append('\'');
         sb.append('}');
         return sb.toString();

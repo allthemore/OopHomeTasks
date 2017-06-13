@@ -276,12 +276,12 @@ public class LibraryTest {
         Edition book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, "Adventures");
         Edition book2 = new FictionBook("Золотой теленок", "Ильф, Петров", 2000, "Russian", 600, "Adventures");
         Edition book3 = new ReferenceBook("English Grammar #1", "Автор1", 2017, "Russian", 600, true);
-        Edition book4 = new Encyclopedia("Encyclopedia1", "Author2", 2017, "English", 400, 5);
-        Edition book5 = new Encyclopedia("Encyclopedia2", "Author2", 2016, "English", 400, 5);
-        System.out.println(book1.info());
-        System.out.println(book2.info());
-        System.out.println(book3.info());
-        System.out.println(book4.info());
-        System.out.println(book5.info());
+        Edition book4 = new Encyclopedia("Encyclopedia1", "John Smith", 2017, "English", 400, 5);
+        Edition book5 = new Encyclopedia("Encyclopedia2", "Jane Smith", 2016, "English", 400, 5);
+        assertEquals("Edition{title='12 Стульев', author='Ильф, Петров'}", book1.info());
+        assertEquals("Edition{title='Золотой теленок', author='Ильф, Петров'}", book2.info());
+        assertEquals("Edition{title='English Grammar #1', author='Автор1'}", book3.info());
+        assertEquals("Edition{title='Encyclopedia1', author='John Smith'}", book4.info());
+        assertEquals("Edition{title='Encyclopedia2', author='Jane Smith'}", book5.info());
     }
 }

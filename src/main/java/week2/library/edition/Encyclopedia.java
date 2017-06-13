@@ -40,7 +40,7 @@ public class Encyclopedia extends Edition {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Encyclopedia{");
         sb.append(super.toString());
-        sb.append("volumesNumber=").append(volumesNumber);
+        sb.append(", volumesNumber=").append(volumesNumber);
         sb.append('}');
         return sb.toString();
     }

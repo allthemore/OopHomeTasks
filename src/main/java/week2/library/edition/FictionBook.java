@@ -26,7 +26,7 @@ public class FictionBook extends Edition {
     public String toString() {
         final StringBuilder sb = new StringBuilder("FictionBook{");
         sb.append(super.toString());
-        sb.append("genre='").append(genre).append('\'');
+        sb.append(", genre='").append(genre).append('\'');
         sb.append('}');
         return sb.toString();
     }

@@ -5,11 +5,11 @@ package week2.library.edition;
  */
 public abstract class Edition {
 
-    final private String title;
-    final private String author;
-    final private int yearOfPublishing;
-    final private String language;
-    final private int pageNumber;
+    private final String title;
+    private final String author;
+    private final int yearOfPublishing;
+    private final String language;
+    private final int pageNumber;
     private String issn;
     private boolean takenByVisitor;
 

@@ -9,8 +9,8 @@ import week2.library.edition.Edition;
  */
 public class Visitor implements Comparable<Visitor>{
 
-    final private String name;
-    final private String surname;
+    private final String name;
+    private final String surname;
     private boolean accessAllowed = true;
     private static final int MAX_BOOKS_BORROWED = 3;
 
