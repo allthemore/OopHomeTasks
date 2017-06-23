@@ -31,7 +31,44 @@ public class MyLinkedList implements MyList{
 
     @Override
     public boolean add(Object o, int index) {
-        return false;
+        if(index > size) return false;
+
+        MyNode myNode = new MyNode(o);
+
+        if(size == 0 && index == 0) {
+            head = tail = myNode;
+
+        } else if(index == 0) {
+            myNode.next = head;
+            head.previous = myNode;
+            head = myNode;
+
+        } else if(index == size) {
+            myNode.previous = tail;
+            tail.next = myNode;
+            tail = myNode;
+
+        } else {
+            myNode.previous = getNode(index - 1);
+            myNode.next = getNode(index + 1);
+            myNode.previous.next = myNode;
+            myNode.next.previous = myNode;
+        }
+
+        size++;
+        return true;
+    }
+
+//    get node by index and return it
+    private MyNode getNode(int index) {
+        if(size < index) return null;
+
+        MyNode currentNode = head;
+        for (int i = 0; i < size; i++) {
+            if(i == index) return currentNode;
+            currentNode = currentNode.next;
+        }
+        return null;
     }
 
     @Override
@@ -41,12 +78,25 @@ public class MyLinkedList implements MyList{
 
     @Override
     public boolean set(Object o, int index) {
-        return false;
+        if(index >= size) return false;
+
+        MyNode myNode = getNode(index);
+        myNode.value = o ;
+//        findNode(index).value = o;
+        return true;
     }
 
     @Override
     public void clear() {
+        if(size == 0) return;
 
+        Object o;
+
+        for (int i = 0; i < size; i++) {
+            remove(get(i));
+        }
+
+        size = 0;
     }
 
     @Override
@@ -54,14 +104,15 @@ public class MyLinkedList implements MyList{
         return size == 0;
     }
 
+//    Get value of MyNode with specified index
     @Override
     public Object get(int index) {
         if(size < index || size == 0) return null;
-        MyNode iterator = head;
+        MyNode currentNode = head;
 
         for (int i = 0; i < size; i++) {
-            if(index == i) return iterator;
-            iterator = iterator.next;
+            if(index == i) return currentNode.value;
+            currentNode = currentNode.next;
         }
 
         return null;
@@ -94,17 +145,20 @@ public class MyLinkedList implements MyList{
 
         }
 
-        toRemove.next = null;
-        toRemove.previous = null;
-        toRemove.value = null;
+        toRemove.clearNode();
 
         size--;
-         return true;
+        return true;
     }
 
     @Override
     public Object remove(int index) {
-        return null;
+        if(index >= size) return null;
+
+        Object tmp = get(index);
+        remove(get(index));
+
+        return tmp;
     }
 
     @Override
@@ -168,6 +222,12 @@ public class MyLinkedList implements MyList{
 
         private MyNode(Object value) {
             this.value = value;
+        }
+
+        private void clearNode() {
+            next = null;
+            previous = null;
+            value = null;
         }
     }
 }

@@ -268,10 +268,10 @@ public abstract class MyListTest {
 
     @Test
     public void clear_when_non_empty(){
-        assertTrue(myList.add("zero", 0));
-        assertTrue(myList.add("one", 1));
-        assertTrue(myList.add(null, 2));
-        assertTrue(myList.add("three", 3));
+        assertTrue(myList.add("zero"));
+        assertTrue(myList.add("one"));
+        assertTrue(myList.add(null));
+        assertTrue(myList.add("three"));
         myList.clear();
         assertEquals(0, myList.size());
     }
