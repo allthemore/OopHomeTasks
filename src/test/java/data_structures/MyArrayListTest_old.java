@@ -1,4 +1,4 @@
-package week2.data_structures;
+package data_structures;
 
 import org.junit.After;
 import static org.junit.Assert.*;
@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * Created by valentina on 02.06.17.
  */
-public class MyArrayListTest {
+public class MyArrayListTest_old {
 
     private MyArrayList myArrayList;
 

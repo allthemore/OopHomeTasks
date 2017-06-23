@@ -1,9 +1,9 @@
-package week2.data_structures;
+package data_structures;
 
 /**
  * Created by valentina on 31.05.17.
  */
-public interface MyCollection {
+public interface MyCollection extends Iterable{
     boolean add (Object o);
     boolean contains (Object o);
     void clear();

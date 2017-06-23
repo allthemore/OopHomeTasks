@@ -286,6 +286,7 @@ public class LibraryTest {
     public void bookEnum() {
         FictionBook book1 = new FictionBook("12 Стульев", "Ильф, Петров", 2017, "Russian", 600, Genre.ACTION_AND_ADVENTURE);
         FictionBook book2 = new FictionBook("Сказки", "Пушкин", 2017, "Russian", 150, Genre.CHILDRENS);
+        FictionBook book3 = new FictionBook("Золотой Теленок", "Ильф, Петров", 2017, "Russian", 700, Genre.ACTION_AND_ADVENTURE);
         assertEquals(book1.getGenre(), Genre.ACTION_AND_ADVENTURE);
         assertEquals(book2.getGenre(), Genre.CHILDRENS);
     }

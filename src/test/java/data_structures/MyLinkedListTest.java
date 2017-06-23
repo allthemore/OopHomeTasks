@@ -1,4 +1,4 @@
-package week3;
+package data_structures;
 
 /**
  * Created by valentina on 13.06.17.

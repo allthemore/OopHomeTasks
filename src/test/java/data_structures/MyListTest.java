@@ -1,9 +1,8 @@
-package week3;
+package data_structures;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import week2.data_structures.MyList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

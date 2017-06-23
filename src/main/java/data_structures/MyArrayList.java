@@ -1,8 +1,7 @@
-package week2.data_structures;
+package data_structures;
 
 import java.util.Arrays;
 import java.util.Iterator;
-
 
 /**
  * Created by valentina on 31.05.17.
@@ -134,5 +133,24 @@ public class MyArrayList implements MyList{
         sb.append("elementData = ").append(Arrays.toString(elementData));
         sb.append(", size = ").append(size());
         return sb.toString();
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new MyArrayListIterator();
+    }
+
+    private class MyArrayListIterator implements Iterator{
+        private int currentPosition;
+
+        @Override
+        public boolean hasNext() {
+            return currentPosition < size;
+        }
+
+        @Override
+        public Object next() {
+            return elementData[currentPosition++];
+        }
     }
 }
