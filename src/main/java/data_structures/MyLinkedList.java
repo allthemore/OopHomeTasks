@@ -205,13 +205,8 @@ public class MyLinkedList implements MyList{
 
         @Override
         public Object next() {
-            MyNode iterator = head;
-
-            if (currentPosition < size) {
-                currentPosition++;
-                return iterator.next;
-            }
-            return null;
+            
+            return getNode(currentPosition++).value;
         }
     }
 
