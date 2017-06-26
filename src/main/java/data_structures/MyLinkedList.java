@@ -82,7 +82,6 @@ public class MyLinkedList implements MyList{
 
         MyNode myNode = getNode(index);
         myNode.value = o ;
-//        findNode(index).value = o;
         return true;
     }
 
@@ -155,11 +154,12 @@ public class MyLinkedList implements MyList{
     public Object remove(int index) {
         if(index >= size || index < 0) return null;
 
-        Object tmp = get(index);
-        remove(get(index));
-
-        return tmp;
+        MyNode myNode = getNode(index);
+        Object o = myNode.value;
+        remove(myNode.value);
+        return o;
     }
+
 
     @Override
     public int size() {
