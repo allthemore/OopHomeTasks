@@ -31,7 +31,7 @@ public class MyLinkedList implements MyList{
 
     @Override
     public boolean add(Object o, int index) {
-        if(index > size) return false;
+        if(index > size || index < 0) return false;
 
         MyNode myNode = new MyNode(o);
 
@@ -61,7 +61,7 @@ public class MyLinkedList implements MyList{
 
 //    get node by index and return it
     private MyNode getNode(int index) {
-        if(size < index) return null;
+        if(size < index || index < 0) return null;
 
         MyNode currentNode = head;
         for (int i = 0; i < size; i++) {
@@ -78,7 +78,7 @@ public class MyLinkedList implements MyList{
 
     @Override
     public boolean set(Object o, int index) {
-        if(index >= size) return false;
+        if(index >= size || index < 0) return false;
 
         MyNode myNode = getNode(index);
         myNode.value = o ;
@@ -107,7 +107,7 @@ public class MyLinkedList implements MyList{
 //    Get value of MyNode with specified index
     @Override
     public Object get(int index) {
-        if(size < index || size == 0) return null;
+        if(size < index || size == 0 || index < 0) return null;
         MyNode currentNode = head;
 
         for (int i = 0; i < size; i++) {
@@ -153,7 +153,7 @@ public class MyLinkedList implements MyList{
 
     @Override
     public Object remove(int index) {
-        if(index >= size) return null;
+        if(index >= size || index < 0) return null;
 
         Object tmp = get(index);
         remove(get(index));
