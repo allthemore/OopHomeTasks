@@ -3,11 +3,11 @@ package data_structures;
 /**
  * Created by valentina on 31.05.17.
  */
-public interface MyCollection extends Iterable{
-    boolean add (Object o);
-    boolean contains (Object o);
+public interface MyCollection<E> extends Iterable<E>{
+    boolean add (E o);
+    boolean contains (E o);
     void clear();
     boolean isEmpty();
-    boolean remove(Object o);
+    boolean remove(E o);
     int size();
 }

@@ -6,10 +6,10 @@ import java.util.Iterator;
 /**
  * Created by valentina on 31.05.17.
  */
-public class MyArrayList implements MyList{
+public class MyArrayList<E> implements MyList<E>{
 
     private static final int DEFAULT_CAPACITY = 10;
-    private  Object[] elementData;
+    private  E[] elementData;
     private int size;
 
     public MyArrayList() {
@@ -18,42 +18,42 @@ public class MyArrayList implements MyList{
     }
 
     public MyArrayList(int capacity) {
-        this.elementData = new Object[capacity];
+        this.elementData =(E[]) new Object[capacity];
     }
 
     @Override
-    public boolean add(Object o) {
+    public boolean add(E o) {
         if(size == elementData.length) increaseCapacity();
         elementData[size++] = o;
         return true;
     }
 
     private void increaseCapacity() {
-        Object[] newElementData = new Object[(elementData.length * 3) / 2 + 1];
+        E[] newElementData = (E[]) new Object[(elementData.length * 3) / 2 + 1];
         System.arraycopy(elementData, 0, newElementData, 0, size);
         elementData = newElementData;
     }
 
     @Override
-    public boolean add(Object o, int index) {
+    public boolean add(E o, int index) {
         if(index > size) return false;
         if(size == elementData.length) increaseCapacity();
-        shiftElementsToTheRight(index);
+        shiftElementsEoEheRight(index);
         elementData[index] = o;
         size++;
         return true;
     }
 
-    private void shiftElementsToTheRight(int index) {
+    private void shiftElementsEoEheRight(int index) {
         System.arraycopy(elementData, index, elementData, index + 1, size - index);
     }
 
-    private void shiftElementsToTheLeft(int index) {
+    private void shiftElementsEoEheLeft(int index) {
         System.arraycopy(elementData, index + 1, elementData, index, size - index);
     }
 
     @Override
-    public boolean contains(Object o) {
+    public boolean contains(E o) {
         if(size == 0) return false;
         for (Object elem : elementData) {
             if(o != null ? o.equals(elem) : elem == null) return true;
@@ -62,7 +62,7 @@ public class MyArrayList implements MyList{
     }
 
     @Override
-    public boolean set(Object o, int index) {
+    public boolean set(E o, int index) {
         if(index >= size) return false;
         elementData[index] = o;
         return true;
@@ -79,7 +79,7 @@ public class MyArrayList implements MyList{
     }
 
     @Override
-    public Object get(int index) {
+    public E get(int index) {
         if(index >= size) return null;
         return elementData[index];
     }
@@ -90,16 +90,16 @@ public class MyArrayList implements MyList{
     }
 
     @Override
-    public Object remove(int index) {
+    public E remove(int index) {
         if(index >= size) return null;
-        Object tmp = get(index);
-        shiftElementsToTheLeft(index);
+        E tmp = get(index);
+        shiftElementsEoEheLeft(index);
         elementData[size--] = null;
         return tmp;
     }
 
     @Override
-    public boolean remove(Object o) {
+    public boolean remove(E o) {
 
         if(o == null){
             for (int i = 0; i < size; i++) {
@@ -136,11 +136,11 @@ public class MyArrayList implements MyList{
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<E> iterator() {
         return new MyArrayListIterator();
     }
 
-    private class MyArrayListIterator implements Iterator{
+    private class MyArrayListIterator implements Iterator<E>{
         private int currentPosition;
 
         @Override
@@ -149,7 +149,7 @@ public class MyArrayList implements MyList{
         }
 
         @Override
-        public Object next() {
+        public E next() {
             return elementData[currentPosition++];
         }
     }

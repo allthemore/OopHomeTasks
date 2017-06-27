@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * Created by valentina on 13.06.17.
  */
-public class MyLinkedList implements MyList{
+public class MyLinkedList<E> implements MyList<E>{
 
     private MyNode head;
     private MyNode tail;
@@ -15,7 +15,7 @@ public class MyLinkedList implements MyList{
     }
 
     @Override
-    public boolean add(Object o) {
+    public boolean add(E o) {
         MyNode node = new MyNode(o);
 
         if(size == 0) {
@@ -30,7 +30,7 @@ public class MyLinkedList implements MyList{
     }
 
     @Override
-    public boolean add(Object o, int index) {
+    public boolean add(E o, int index) {
         if(index > size || index < 0) return false;
 
         MyNode myNode = new MyNode(o);
@@ -72,12 +72,12 @@ public class MyLinkedList implements MyList{
     }
 
     @Override
-    public boolean contains(Object o) {
+    public boolean contains(E o) {
         return findNode(o) != null;
     }
 
     @Override
-    public boolean set(Object o, int index) {
+    public boolean set(E o, int index) {
         if(index >= size || index < 0) return false;
 
         MyNode myNode = getNode(index);
@@ -88,8 +88,6 @@ public class MyLinkedList implements MyList{
     @Override
     public void clear() {
         if(size == 0) return;
-
-        Object o;
 
         for (int i = 0; i < size; i++) {
             remove(get(i));
@@ -105,7 +103,7 @@ public class MyLinkedList implements MyList{
 
 //    Get value of MyNode with specified index
     @Override
-    public Object get(int index) {
+    public E get(int index) {
         if(size < index || size == 0 || index < 0) return null;
         MyNode currentNode = head;
 
@@ -118,7 +116,7 @@ public class MyLinkedList implements MyList{
     }
 
     @Override
-    public boolean remove(Object o) {
+    public boolean remove(E o) {
 
         MyNode toRemove = findNode(o);
 
@@ -151,11 +149,11 @@ public class MyLinkedList implements MyList{
     }
 
     @Override
-    public Object remove(int index) {
+    public E remove(int index) {
         if(index >= size || index < 0) return null;
 
         MyNode myNode = getNode(index);
-        Object o = myNode.value;
+        E o = myNode.value;
         remove(myNode.value);
         return o;
     }
@@ -166,7 +164,7 @@ public class MyLinkedList implements MyList{
         return this.size;
     }
 
-    private MyNode findNode(Object o) {
+    private MyNode findNode(E o) {
         MyNode currentNode = head;
 
         if(o == null) {
@@ -191,11 +189,11 @@ public class MyLinkedList implements MyList{
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<E> iterator() {
         return new MyLinkedListIterator();
     }
 
-    private class MyLinkedListIterator implements Iterator{
+    private class MyLinkedListIterator implements Iterator<E>{
         private int currentPosition;
 
         @Override
@@ -204,18 +202,18 @@ public class MyLinkedList implements MyList{
         }
 
         @Override
-        public Object next() {
-            
+        public E next() {
+
             return getNode(currentPosition++).value;
         }
     }
 
-    private static class MyNode {
+    private class MyNode {
         private MyNode next;
         private MyNode previous;
-        private Object value;
+        private E value;
 
-        private MyNode(Object value) {
+        private MyNode(E value) {
             this.value = value;
         }
 

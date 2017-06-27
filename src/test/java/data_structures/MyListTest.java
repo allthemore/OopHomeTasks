@@ -12,7 +12,7 @@ import static org.junit.Assert.assertTrue;
  * Created by valentina on 15.06.17.
  */
 public abstract class MyListTest {
-    protected MyList myList;
+    protected MyList<String> myList;
 
     @Before
     public abstract void setUp();
